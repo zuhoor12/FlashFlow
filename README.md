@@ -2,6 +2,13 @@
 
 A lightweight flashcard-style vocabulary review app built with Vite, Tailwind CSS, and LocalForage.
 
+![VocabFlow app screenshot](./public/vocabflow-screenshot.png)
+
+
+# ⚡ VocabFlow (FlashCartV1)
+> Master new languages, one card at a time.
+
+VocabFlow is a high-performance, browser-based flashcard app built with **Vite**, **Tailwind CSS**, and **LocalForage**. It uses a spaced-repetition logic to help you move vocabulary from short-term to long-term memory.
 ## Project Overview
 
 `VocabFlow` is a spaced-repetition vocabulary trainer with three review boxes:

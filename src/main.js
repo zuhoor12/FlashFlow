@@ -1,8 +1,8 @@
-import { Modal } from './Copmonent/modal/Modal.js'
-import { FromData } from './Copmonent/form/getFormData.js'
-import { Validation } from './Copmonent/form/validation.js';
-import { DataBaseController } from './Copmonent/localStorageManager.js';
-import { BoxManager } from './Copmonent/BoxManager.js';
+import { Modal } from './Component/modal/Modal.js'
+import { FromData } from './Component/form/getFormData.js'
+import { Validation } from './Component/form/validation.js';
+import { DataBaseController } from './Component/localStorageManager.js';
+import { BoxManager } from './Component/BoxManager.js';
 
 let closeBox = document.getElementById("closeBox");
 const addword = document.getElementById("addWordbtn");
