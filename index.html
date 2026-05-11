@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css">
+    <title>flashcartv1</title>
+  </head>
+  <body class="w-full h-full">
+    
+    <main class=" h-full bg-[#F9F9FB] ">
+
+      <div class = "   flex items-start justify-center">
+
+        <!-- Navbar Start  -->
+        <header class="w-full h-30 bg-[#fefefe] flex items-center  justify-center border-b-2 border-[#EEEEF1]">
+          <!-- Navbar Left Content Start -->
+          <div class="  flex items-center justify-between pl-4 pr-4 w-300 h-full bg-transparent">
+            <div class="flex gap-5">
+              <img src="/bookIcon.svg" alt="" class="bg-[#6347D1] p-3 w-15 h-15 rounded-3xl">
+              <div class="flex flex-col ">
+                <h3 class="text-[#17171C] text-3xl font-bold">VocabFlow</h3>
+                <span class="font-normal  text-[#868692]">Spaced Repetition</span>
+              </div>
+            </div>
+            <!-- Navbar Left Content end -->
+            <!-- Navbar Right Content Start -->
+            <button  id="addWordbtn" class="flex bg-[#6347D1]  gap-1 items-center justify-center rounded-2xl w-40 h-12  pl-1 pr-3 text-[16px] font-bold text-white hover:bg-[#7354f0] transition-all">
+              
+              <img src="/addIcon.svg" alt="" class="w-9">
+              Add Word
+            </button>
+            <!-- Navbar Right Content End -->
+          </div>
+        </header>
+        <!-- Navbar End -->
+        
+      </div>
+      
+
+      <div class="max-w-300 m-auto mt-10 " >
+          <div class=" grid  grid-cols-2  gap-2 items-center md:grid-cols-4 lg:w-[80%] m-auto">
+            <div class=" progressCart bg-[#eeeef1]">
+              <img src="/TotalWordIcon.svg" alt="" class="w-8">
+              <span id="totalWord" class="font-bold text-3xl"></span>
+              <span  class="text-[#797986] font-medium">Total Words</span>
+            </div>
+            <div class="progressCart bg-[#eae7f6]">
+              <img src="/dailyIcon.svg" alt="" class="w-8">
+              <span id="totalDaily" class="font-bold text-3xl"></span>
+              <span  class="text-[#797986] font-medium">Daily Review</span>
+            </div>
+            <div class="progressCart bg-[#f6e7ed]">
+              <img src="/starIcon.svg" alt="" class="w-8">
+              <span id="totalMedium"  class="font-bold text-3xl"></span>
+              <span  class="text-[#797986] font-medium">Medium Review</span>
+            </div>
+            <div class=" progressCart bg-[#e5f2f1]">
+              <img src="/rewardedIcon.svg" alt="" class="w-8">
+              <span id="totalMaster"  class="font-bold text-3xl">0</span>
+              <span class="text-[#797986] font-medium">Mastered</span>
+            </div>
+          </div>
+          <div class="w-full m-auto mt-10 h-auto  rounded-2xl p-2 flex flex-col items-center md:w-[80%]">
+            <div  class="w-full bg-[#eeeef1] transition rounded-2xl grid grid-cols-3 p-2 text-center gap-1">
+              <div id="daily" class=" p-4 active  rounded-2xl text-[#797986] boxManager">
+                <div class="font-medium nextclick  rounded-2xl text-[16px] flex items-center justify-center gap-3">
+                  <img alt="Daily" id="dailyIcon" >  
+                  Daily
+                  <span id="totalDaily1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
+                </div>
+                <span class="text-[11px] font-sans">Review evry day</span>
+              </div>
+              <div id="medium" class=" p-4 rounded-2xl text-[#797986] boxManager">
+                <div class="font-medium nextclick  rounded-2xl text-[16px] flex items-center justify-center gap-3">
+                  <img alt="Medium" id="mediumIcon" >  
+                  Medium
+                  <span id="totalMedium1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
+                </div>
+                <span class="text-[11px] font-sans">3x per week</span>
+              </div>
+              <div id="master" class=" p-4 rounded-2xl text-[#797986] boxManager">
+                <div class="font-medium  nextclick rounded-2xl text-[16px] flex items-center justify-center gap-3">
+                  <img alt="Master" id="masterIcon" >  
+                  Mastered
+                  <span id="totalMaster1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
+                </div>
+                <span class="text-[11px] font-sans">1x per week</span>
+              </div>
+            </div>
+            <div class="w-full h-100 mt-5 flex flex-col " id="CartBox">
+              <div class=" w-[80%] h-10 m-auto  ">
+                <!-- Title Progress Strt -->
+                <div class="flex items-center justify-between text-[15px] text-[#797986] font-medium">
+                  <span>Cart <span id="firstNum">1 </span> of <span id="secondNum">4</span> </span>
+                  <span id="percentage"></span>
+                </div>
+                <!-- Title Progress End -->
+                 <!-- Animation Progress Box -->
+                <span  class="w-full h-2 rounded-2xl mt-2 bg-white flex">
+                  <span id="progressBar" class=" h-full transition-all bg-[#6347D1] rounded-2xl"></span>
+                </span>
+              </div>
+                <div id="cartBox" class="w-full h-100 md:max-w-150 m-auto mt-15 perspective">
+
+                  <div id="innerCard" class="relative w-[80%] h-80 m-auto transition-transform duration-500 transform-style">
+
+                    <!-- Front -->
+                    <div  class="absolute w-full h-full backface-hidden rounded-3xl shadow bg-white flex flex-col items-center justify-center">
+                      <span class="text-[12px] text-[#797986] uppercase">word</span>
+                      <h1 class="text-4xl transition-all" id="frontCard"></h1>
+                      <span class="mt-5 text-[#797986] text-[12px]">Tap to reveal</span>
+                    </div>
+
+                    <!-- Back -->
+                    <div  class="absolute w-full h-full backface-hidden rotate-y-180 rounded-3xl shadow bg-white flex flex-col items-center justify-center">
+                      <span class="text-[12px] text-[#797986] uppercase">Meaning</span>
+                      <h1 class="text-2xl text-center" id="backCard"></h1>
+                      <span class="mt-5 text-[#797986] text-[12px]">Tap to flip back</span>
+                    </div>
+
+                  </div>
+                </div>
+              <!-- End Cart -->
+              <div class="w-[80%] h-100  m-auto mt-10 md:max-w-150">
+                <div class="w-[80%] h-30  m-auto grid grid-cols-3 gap-3 mt-2">
+                  <button id="showMeaning" class="flex items-center transition-all duration-400  justify-center  col-span-2  gap-3 font-medium bg-[#f9f9fb] rounded-2xl transition-all shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)] hover:bg-[#DF497B] hover:text-white ">
+                    <img src="/eysDark.svg" alt="" class="w-5 ">
+                    Show Meaninig
+                  </button>
+                  <button id="next" class=" flex  items-center justify-center gap-3 bg-[#eeeef1] rounded-2xl hover:bg-[#c8c8ce] font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
+                    <img src="/arrow_forward1.svg" alt="" class="w-4">
+                    Next
+                  </button>
+                  <button id="move" class=" bg-[#6347D1] col-span-2 flex items-center justify-center text-white gap-3 font-medium rounded-3xl hover:bg-[#522ee2] transition-all shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
+                    <img src="/arrow_circle_right.svg" alt="">
+                    Move to Box 2
+                  </button>
+                  <button id="delete" class=" transition-all duration-400 bg-[#d32222] col-span-2 flex items-center justify-center text-white gap-3 font-medium rounded-3xl hover:bg-[#522ee2]  shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
+                    <img src="/arrow_circle_right.svg" alt="">
+                    delete Word
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+    </main>
+
+    <!-- prompt box Start  -->
+    <div id="overlay" class="bg-[rgba(0,0,0,0.6)] hidden  w-full h-full fixed top-0 left-0 z-100 "></div>
+      <div id="promptBox" class="w-100 h-100 hidden rounded-2xl  bg-white z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
+        <div class="w-[90%] h-full flex  m-auto items-center  justify-center  flex-col gap-4">
+            <div  class="flex w-full justify-between font-bold mt-13 text-[18px]" >
+              Add New Word
+            <img id="closeBox" src="/closeIcon.svg" alt="" class="w-4 cursor-pointer">
+          </div>
+          <form id="myForm" class=" w-full h-full gap-2 flex flex-col items-start justify-center">
+            <div class="flex flex-col w-full">
+              <label for="word" class="font-medium">Word (front)</label>
+              <input type="text" id="word" class="w-full h-10 pl-3 border placeholder:text-gray-400 transition-all border-gray-300 focus:outline-none focus:border-[#6347D1] rounded-[10px] bg-white" placeholder="e.g, Serendipity">
+              <span id="wordError" class="font-medium text-red-700 m-2"></span>
+            </div>
+            <div class="w-full flex-col flex">
+              <label for="meaning" class="font-medium"> Meaning (Back)</label>
+              <textarea  id="meaning" placeholder="e.g , Finding something good without lokking for it" class="border transition-all border-gray-300 00 h-30 rounded-[10px] p-2 text-[14px] resize-none focus:outline-none focus:border-[#6347D1]"></textarea>
+              <span id="textAreaerrobox" class="font-medium text-red-800"></span>
+            </div>
+            <button type="submit"  id="addvocabulary" class="flex transition-all mb-10 cursor-pointer bg-[#6347D1] w-full h-10 rounded-[10px] items-center text-white  justify-center">
+              <img src="/addIcon.svg" alt="" class="w-4">
+              Add to Daily Review
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- prompt box end -->
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
