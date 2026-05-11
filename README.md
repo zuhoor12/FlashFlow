@@ -2,7 +2,7 @@
 
 A lightweight flashcard-style vocabulary review app built with Vite, Tailwind CSS, and LocalForage.
 
-![VocabFlow app screenshot](./public/vocabflow-screenshot.png)
+![VocabFlow app screenshot](public/vocabflow-screenshot.png)
 
 
 # ⚡ VocabFlow (FlashCartV1)
