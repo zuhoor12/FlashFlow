@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/style.css">
-    <title>flashcartv1</title>
+    <title>Flash Card</title>
   </head>
-  <body class="w-full h-full">
+  <body class="min-h-screen flex flex-col">
     
-    <main class=" h-full bg-[#F9F9FB] ">
+    <main class=" flex-1  bg-[#F9F9FB] ">
 
       <div class = "   flex items-start justify-center">
 
@@ -39,8 +39,8 @@
       </div>
       
 
-      <div class="max-w-300 m-auto mt-10 " >
-          <div class=" grid  grid-cols-2  gap-2 items-center md:grid-cols-4 lg:w-[80%] m-auto">
+      <div class="max-w-300 w-[90%] m-auto mt-10 flex flex-col " >
+          <div class=" grid  grid-cols-2  w-full gap-2 items-center md:grid-cols-4 m-auto">
             <div class=" progressCart bg-[#eeeef1]">
               <img src="/TotalWordIcon.svg" alt="" class="w-8">
               <span id="totalWord" class="font-bold text-3xl"></span>
@@ -89,7 +89,7 @@
                 <span class="md:text-[11px] text-[8px] font-sans">1x per week</span>
               </div>
             </div>
-            <div class="w-full h-100 mt-5 flex flex-col " id="CartBox">
+            <div class="w-full h-full mt-5 flex flex-col " id="CartBox">
               <div class=" w-[80%] h-10 m-auto  ">
                 <!-- Title Progress Strt -->
                 <div class="flex items-center justify-between text-[15px] text-[#797986] font-medium">
@@ -123,7 +123,7 @@
                   </div>
                 </div>
               <!-- End Cart -->
-              <div class="w-[80%] h-100  m-auto mt-10 md:max-w-150">
+              <div class="w-[80%] h-auto  m-auto  md:max-w-150">
                 <div class="w-[90%] h-30  m-auto grid grid-cols-3 gap-3 mt-2">
                   <button id="showMeaning" class="flex items-center transition-all duration-400  justify-center  col-span-2  gap-1 md:gap-3 md:font-medium text-[12px] md:text-[18px] bg-[#f9f9fb] rounded-2xl  shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)] hover:bg-[#DF497B] hover:text-white ">
                     
@@ -144,6 +144,9 @@
                   </button>
                 </div>
               </div>
+
+                
+                
             </div>
           </div>
 
@@ -151,9 +154,29 @@
 
     </main>
 
+    <footer class="w-full  h-25 border-t-2 bg-[#fefefe] border-[#EEEEF1] mt-7 flex items-center justify-center">
+      <div class="w-[80%]  flex flex-col md:flex-row gap-3 md:justify-around items-center  justify-between">
+
+        <div class=" flex items-center md:justify-center md:gap-10   gap-3 justify-evenly">
+          <div class="flex items-center gap-2">
+            <img src="/favicon.png" alt="" class="md:w-9 w-6">
+            <span class="font-bold text-[14px] md:text-2xl">Vocab <sapn class="text-sky-600">Flow</sapn></span>
+          </div>
+          <div class="flex gap-3 items-center cursor-pointer" >
+            <a  href="https://www.linkedin.com/in/ali-zuhoor-bayat-814304218/" rel="" target="_blank" class="hover:text-[#6347D1] transition"><img class="md:w-11 w-8" src="/linkedin.svg" alt="linkedin"></a>
+            <a href="https://github.com/zuhoor12"  target="_blank" class="hover:text-[#6347D1] transition"><img class="md:w-9  w-7" src="/github.png" alt="github"></a>
+
+          </div>
+        </div>
+        <span class="text-[12px] text-sky-900 font-medium md:text-[18px] ">
+          Where words become memory
+        </span>
+      </div>
+    </footer>
+
     <!-- prompt box Start  -->
     <div id="overlay" class="bg-[rgba(0,0,0,0.6)] hidden  w-full h-full fixed top-0 left-0 z-100 "></div>
-      <div id="promptBox" class="w-90 md:w-120 h-100 hidden rounded-2xl  bg-white z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
+      <div id="promptBox" class="w-90 md:w-120 h-96 hidden rounded-2xl  bg-white z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
         <div class="w-[90%] h-full flex  m-auto items-center  justify-center  flex-col gap-4">
             <div  class="flex w-full justify-between font-bold mt-13 text-[18px]" >
               Add New Word
