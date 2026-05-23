@@ -14,10 +14,10 @@
       <div class = "   flex items-start justify-center">
 
         <!-- Navbar Start  -->
-        <header class="w-full h-30 bg-[#fefefe] flex items-center  justify-center border-b-2 border-[#EEEEF1]">
+        <header class="w-full h-40 bg-[#fefefe] flex   items-center  justify-center border-b-2 border-[#EEEEF1]">
           <!-- Navbar Left Content Start -->
-          <div class="  flex items-center justify-between pl-4 pr-4 w-300 h-full bg-transparent">
-            <div class="flex gap-5">
+          <div class="  flex items-center flex-col md:flex-row  justify-between pl-4 pr-4 w-300 h-full bg-transparent">
+            <div class="flex gap-5 mt-3">
               <img src="/bookIcon.svg" alt="" class="bg-[#6347D1] p-3 w-15 h-15 rounded-3xl">
               <div class="flex flex-col ">
                 <h3 class="text-[#17171C] text-3xl font-bold">VocabFlow</h3>
@@ -26,7 +26,7 @@
             </div>
             <!-- Navbar Left Content end -->
             <!-- Navbar Right Content Start -->
-            <button  id="addWordbtn" class="flex bg-[#6347D1]  gap-1 items-center justify-center rounded-2xl w-40 h-12  pl-1 pr-3 text-[16px] font-bold text-white hover:bg-[#7354f0] transition-all">
+            <button  id="addWordbtn" class="flex mb-2 bg-[#6347D1]  gap-1 items-center justify-center rounded-2xl w-40 h-12  pl-1 pr-3 text-[16px] font-bold text-white hover:bg-[#7354f0] transition-all">
               
               <img src="/addIcon.svg" alt="" class="w-9">
               Add Word
@@ -63,30 +63,30 @@
             </div>
           </div>
           <div class="w-full m-auto mt-10 h-auto  rounded-2xl p-2 flex flex-col items-center md:w-[80%]">
-            <div  class="w-full bg-[#eeeef1] transition rounded-2xl grid grid-cols-3 p-2 text-center gap-1">
+            <div  class="w-full bg-[#eeeef1]  transition rounded-2xl grid grid-cols-3 p-2 text-center gap-1">
               <div id="daily" class=" p-4 active  rounded-2xl text-[#797986] boxManager">
-                <div class="font-medium nextclick  rounded-2xl text-[16px] flex items-center justify-center gap-3">
-                  <img alt="Daily" id="dailyIcon" >  
+                <div class="font-medium nextclick  rounded-2xl text-[12px] md:text-[16px]  flex items-center justify-center gap-3">
+                  <img alt="Daily" id="dailyIcon" class="w-4 md:w-6" >  
                   Daily
                   <span id="totalDaily1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
                 </div>
-                <span class="text-[11px] font-sans">Review evry day</span>
+                <span class="text-[8px] md:text-[12px] font-sans">Review evry day</span>
               </div>
               <div id="medium" class=" p-4 rounded-2xl text-[#797986] boxManager">
-                <div class="font-medium nextclick  rounded-2xl text-[16px] flex items-center justify-center gap-3">
-                  <img alt="Medium" id="mediumIcon" >  
+                <div class="font-medium nextclick  rounded-2xl text-[12px] md:text-[16px] flex items-center justify-center gap-3">
+                  <img alt="Medium" id="mediumIcon" class="w-4 md:w-6" >  
                   Medium
                   <span id="totalMedium1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
                 </div>
-                <span class="text-[11px] font-sans">3x per week</span>
+                <span class="text-[8px] md:text-[12px] font-sans">3x per week</span>
               </div>
               <div id="master" class=" p-4 rounded-2xl text-[#797986] boxManager">
-                <div class="font-medium  nextclick rounded-2xl text-[16px] flex items-center justify-center gap-3">
-                  <img alt="Master" id="masterIcon" >  
+                <div class="font-medium  nextclick rounded-2xl not-last:text-[12px] md:text-[16px] flex items-center justify-center gap-3">
+                  <img alt="Master" id="masterIcon" class="w-4 md:w-6" >  
                   Mastered
                   <span id="totalMaster1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
                 </div>
-                <span class="text-[11px] font-sans">1x per week</span>
+                <span class="md:text-[11px] text-[8px] font-sans">1x per week</span>
               </div>
             </div>
             <div class="w-full h-100 mt-5 flex flex-col " id="CartBox">
@@ -125,21 +125,22 @@
               <!-- End Cart -->
               <div class="w-[80%] h-100  m-auto mt-10 md:max-w-150">
                 <div class="w-[80%] h-30  m-auto grid grid-cols-3 gap-3 mt-2">
-                  <button id="showMeaning" class="flex items-center transition-all duration-400  justify-center  col-span-2  gap-3 font-medium bg-[#f9f9fb] rounded-2xl transition-all shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)] hover:bg-[#DF497B] hover:text-white ">
-                    <img src="/eysDark.svg" alt="" class="w-5 ">
+                  <button id="showMeaning" class="flex items-center transition-all duration-400  justify-center  col-span-2  gap-1 md:gap-3 md:font-medium text-[12px] md:text-[18px] bg-[#f9f9fb] rounded-2xl  shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)] hover:bg-[#DF497B] hover:text-white ">
+                    
                     Show Meaninig
+                    <img src="/eysDark.svg" alt="" class="w-4 md:w-6 ">
                   </button>
-                  <button id="next" class=" flex  items-center justify-center gap-3 bg-[#eeeef1] rounded-2xl hover:bg-[#c8c8ce] font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
-                    <img src="/arrow_forward1.svg" alt="" class="w-4">
+                  <button id="next" class=" flex  items-center justify-center gap-1 transition-colors bg-[#eeeef1] rounded-2xl hover:bg-[#c8c8ce] text-[12px] md:text-[16px] md:font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
                     Next
+                    <img src="/arrow_forward1.svg" alt="" class="w-4 md:w-6 ">
                   </button>
-                  <button id="move" class=" bg-[#6347D1] col-span-2 flex items-center justify-center text-white gap-3 font-medium rounded-3xl hover:bg-[#522ee2] transition-all shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
-                    <img src="/arrow_circle_right.svg" alt="">
-                    Move to Box 2
+                  <button id="move" class=" bg-[#6347D1] col-span-2 flex items-center justify-center text-white md:gap-3 gap-1 text-[12px] md:font-medium  md:text-[18px] rounded-3xl hover:bg-[#522ee2] transition-all shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
+                    Move to the next box
+                    <img src="/arrow_circle_right.svg" alt="" class="w-4 md:w-6" >
                   </button>
                   <button id="delete" class=" transition-all duration-400 bg-[#d32222] col-span-2 flex items-center justify-center text-white gap-3 font-medium rounded-3xl hover:bg-[#522ee2]  shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
-                    <img src="/arrow_circle_right.svg" alt="">
                     delete Word
+                    <img src="/arrow_circle_right.svg" alt="" class="w-4 md:w-6" >
                   </button>
                 </div>
               </div>
@@ -152,7 +153,7 @@
 
     <!-- prompt box Start  -->
     <div id="overlay" class="bg-[rgba(0,0,0,0.6)] hidden  w-full h-full fixed top-0 left-0 z-100 "></div>
-      <div id="promptBox" class="w-100 h-100 hidden rounded-2xl  bg-white z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
+      <div id="promptBox" class="w-90 md:w-120 h-100 hidden rounded-2xl  bg-white z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
         <div class="w-[90%] h-full flex  m-auto items-center  justify-center  flex-col gap-4">
             <div  class="flex w-full justify-between font-bold mt-13 text-[18px]" >
               Add New Word
