@@ -1,11 +1,11 @@
-# VocabFlow (FlashCartV1)
+# VocabFlow (FlashCardV1)
 
 A lightweight flashcard-style vocabulary review app built with Vite, Tailwind CSS, and LocalForage.
 
 ![VocabFlow app screenshot](public/vocabflow-screenshot.png)
 
 
-# ⚡ VocabFlow (FlashCartV1)
+# ⚡ VocabFlow (FlashCardV1)
 > Master new languages, one card at a time.
 
 VocabFlow is a high-performance, browser-based flashcard app built with **Vite**, **Tailwind CSS**, and **LocalForage**. It uses a spaced-repetition logic to help you move vocabulary from short-term to long-term memory.
@@ -80,8 +80,6 @@ FlashCartV1/
 │   │   │   └── validation.js
 │   │   └── modal/
 │   │       └── Modal.js
-│   └── dataBase/
-│       └── saveOnlocalStorage.js
 └── public/
     └── *.svg
 ```
@@ -113,8 +111,6 @@ FlashCartV1/
 ## Known limitations
 
 - The app currently stores each word key directly in LocalForage, so duplicate words overwrite previous entries.
-- The `Move to Box 2` button only moves words from Daily → Medium or Medium → Mastered.
+- The `Move to Box ` button only moves words from Daily → Medium or Medium → Mastered.
 
-## License
 
-This project is private.
