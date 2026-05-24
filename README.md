@@ -3,7 +3,7 @@
 A lightweight flashcard-style vocabulary review app built with Vite, Tailwind CSS, and LocalForage.
 
 ![VocabFlow app screenshot](public/vocabflow-screenshot.png)
-
+Live : https://flashcard-nu-seven.vercel.app/
 
 # ⚡ VocabFlow (FlashCardV1)
 > Master new languages, one card at a time.
