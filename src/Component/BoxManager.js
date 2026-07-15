@@ -99,9 +99,6 @@ export class BoxManager {
         if(this.currentIndex > 0){
             this.currentIndex -=1;
         }
-        // if(this.currentIndex === this.currentWords.length){
-        //     this.currentIndex = this.currentWords.length
-        // }
         this.modal.Progress(this.currentWords.length , this.currentIndex + 1)
         this.modal.Counter(this.currentWords.length, this.currentIndex + 1);
         this.modal.showWord(this.currentWords[this.currentIndex].word, this.currentWords[this.currentIndex].meaning);
