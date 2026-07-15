@@ -35,6 +35,9 @@ export class BoxManager {
         document.getElementById("prev").addEventListener("click",()=>{
             this.previous()
         })
+        document.getElementById("Previous").addEventListener("click",()=>{
+            this.PreviousWords()
+        })
 
         this.element = null;
     }
@@ -53,6 +56,7 @@ export class BoxManager {
         }
         // if the element parameter is not null, we will set it as the current element and proceed to render the contents of the selected box. We will call the activeBox method of the modal to highlight the selected box and update the icons accordingly. Then, we will retrieve all the words from the database for the selected level and store them in the currentWords array. We will also reset the currentIndex to 0 to start from the first word in the box.
         this.element = element;
+        console.log(element.id)
         this.modal.activeBox(this.element, [this.dailyBox, this.mediumBox, this.masterBox]);
         const level = this.element.id;
 
@@ -66,6 +70,15 @@ export class BoxManager {
             this.modal.showWord(this.currentWords[this.currentIndex].word, this.currentWords[this.currentIndex].meaning);
         } else {
             this.modal.showWord("No Words", "Please add some words to this box");
+        }
+        if(this.element.id !== "daily"){
+            document.getElementById("Previous").classList.remove("hidden")
+            document.getElementById("Previous").classList.add("flex")
+            document.getElementById("move").classList.add("hidden")
+        }else{
+            document.getElementById("Previous").classList.add("hidden")
+            document.getElementById("Previous").classList.remove("flex")
+            document.getElementById("move").classList.remove("hidden")
         }
         // we will also check if the selected box is the master box. If it is, we will hide the "move" button and show the "delete" button, since words in the master box cannot be moved to another box but can be deleted. If the selected box is not the master box, we will show the "move" button and hide the "delete" button, allowing users to move words to the next level or delete them if they wish.
         if (this.element.id === "master") {
@@ -123,6 +136,23 @@ export class BoxManager {
             await this.DatabaseManagerInstance.removeWord("medium", currentWord.word);
             await this.render(this.element);
             await this.updateTotalWord();
+        }
+    }
+    async PreviousWords(){
+        if(this.currentWords.length === 0){return ;}
+        const currentWord = this.currentWords[this.currentIndex]
+        console.log(currentWord)
+        if(this.element.id === "medium"){
+            await this.DatabaseManagerInstance.saveWord("daily",currentWord.word, currentWord.meaning)
+            await this.DatabaseManagerInstance.removeWord("medium",currentWord.word)
+            await this.render(this.element)
+            await this.updateTotalWord()
+        }
+        else if(this.element.id === "master"){
+            await this.DatabaseManagerInstance.saveWord("medium",currentWord.word, currentWord.meaning)
+            await this.DatabaseManagerInstance.removeWord("master",currentWord.word)
+            await this.render(this.element)
+            await this.updateTotalWord()
         }
     }
     // the deleteWord method will be responsible for deleting a word from the current box. It will check if there are any words in the current box and if there is a current word selected. If there is a current word, it will remove it from the database and re-render the current box to reflect the changes. It will also update the total word count in each box after deleting the word.
