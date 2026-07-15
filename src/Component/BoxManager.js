@@ -32,6 +32,9 @@ export class BoxManager {
         document.getElementById("showMeaning").addEventListener("click", () => {
             this.modal.cartAnimation();
         });
+        document.getElementById("prev").addEventListener("click",()=>{
+            this.previous()
+        })
 
         this.element = null;
     }
@@ -87,6 +90,22 @@ export class BoxManager {
         this.modal.Progress(this.currentWords.length, this.currentIndex + 1);
         this.modal.Counter(this.currentWords.length, this.currentIndex + 1);
         this.modal.showWord(this.currentWords[this.currentIndex].word, this.currentWords[this.currentIndex].meaning);
+    }
+
+    previous(){
+        if (this.currentWords.length === 0) {
+            return;
+        }
+        if(this.currentIndex > 0){
+            this.currentIndex -=1;
+        }
+        // if(this.currentIndex === this.currentWords.length){
+        //     this.currentIndex = this.currentWords.length
+        // }
+        this.modal.Progress(this.currentWords.length , this.currentIndex + 1)
+        this.modal.Counter(this.currentWords.length, this.currentIndex + 1);
+        this.modal.showWord(this.currentWords[this.currentIndex].word, this.currentWords[this.currentIndex].meaning);
+    
     }
     // the moveWord method will be responsible for moving a word from the current box to the next level box. It will check if there are any words in the current box and if there is a current word selected. If the current box is the daily box, it will move the word to the medium box and remove it from the daily box. If the current box is the medium box, it will move the word to the master box and remove it from the medium box. After moving the word, it will re-render the current box and update the total word count in each box to reflect the changes.
     async moveWord() {
