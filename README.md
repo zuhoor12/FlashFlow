@@ -34,6 +34,22 @@ Users can add new words and meanings through a modal form, then review and move 
 - Track totals for all boxes and per-box counts
 - Move words from Daily → Medium → Mastered
 - Delete mastered words
+- Pronunciation on every card with the Web Speech API (language selector, remembered between visits)
+- Import words from JSON (paste or choose a file) — new words go straight to the Daily box
+- Export all words as a JSON backup file
+- Light / Dark mode (follows the system theme by default, remembered after you toggle it)
+
+## JSON import / export
+
+Click **Import** and paste JSON or choose a `.json` file. Supported formats:
+
+```json
+[{ "word": "Serendipity", "meaning": "Finding something good by chance" }]
+```
+
+or a simple object `{ "Serendipity": "Finding something good by chance" }`, or `{ "words": [ ... ] }`. All of them are added to the **Daily** box. Words that already exist (in any box) are skipped.
+
+A file created with **Export** contains `daily`, `medium` and `master` lists; importing it restores every word into its own box.
 
 ## Installation
 

@@ -7,6 +7,8 @@ export class Modal{
         // We will get all the necessary elements from the DOM and store them as properties of the class for easy access in the methods.
         this.overlay = document.getElementById("overlay");
         this.promptBox = document.getElementById("promptBox");
+        this.importBox = document.getElementById("importBox");
+        this.speakButtons = document.querySelectorAll("[data-speak]");
         this.addvocabulary = document.getElementById("addvocabulary")
         this.inputText = document.getElementById("word")
         this.inputTextArea = document.getElementById("meaning")
@@ -32,6 +34,12 @@ export class Modal{
     close(){
         this.overlay.classList.add("hidden")
         this.promptBox.classList.add("hidden")
+        this.importBox.classList.add("hidden")
+    }
+    // open/close the "Import Words (JSON)" box. close() above hides it too.
+    openImport(){
+        this.overlay.classList.remove("hidden");
+        this.importBox.classList.remove("hidden");
     }
     // the SubmitOf method will prevent the default form submission behavior when the user clicks the "Add Vocabulary" button, allowing us to handle the form data with JavaScript instead.
     SubmitOf(event){
@@ -86,9 +94,13 @@ export class Modal{
 
     }
     // the showWord method will update the text content of the front and back of the flashcard to display the word and its meaning, allowing the user to see the information they have added in a visually appealing way.
-    showWord(word, meaning){
+    // canSpeak is false for the "No Words" placeholder, so the pronunciation buttons are hidden for it.
+    showWord(word, meaning, canSpeak = true){
         this.frontCard.innerText = word;
         this.backCard.innerText = meaning
+        this.speakButtons.forEach(btn => btn.classList.toggle("invisible", !canSpeak))
+        // stop any pronunciation that is still playing from the previous card
+        if ("speechSynthesis" in window) window.speechSynthesis.cancel()
     }
     // the Progress method will update the progress bar and percentage text to reflect the user's progress in learning new words. It calculates the percentage based on the current index of the word being studied and the total number of words, providing visual feedback on how much of the vocabulary has been learned.
     Progress(lenData, currentIndex){

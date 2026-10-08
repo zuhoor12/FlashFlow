@@ -6,31 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/style.css">
     <title>Flash Card</title>
+    <script>
+      // apply the saved theme before the page paints (no white flash)
+      try {
+        var t = localStorage.getItem("vocabflow-theme");
+        if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col text-[#17171C] dark:text-[#f2f2f5]">
     
-    <main class=" flex-1  bg-[#F9F9FB] ">
+    <main class=" flex-1  bg-[#F9F9FB] dark:bg-[#0f0f14] ">
 
       <div class = "   flex items-start justify-center">
 
         <!-- Navbar Start  -->
-        <header class="w-full h-40 bg-[#fefefe] flex   items-center  justify-center border-b-2 border-[#EEEEF1]">
+        <header class="w-full h-40 bg-[#fefefe] dark:bg-[#17171e] flex   items-center  justify-center border-b-2 border-[#EEEEF1] dark:border-[#2a2a35]">
           <!-- Navbar Left Content Start -->
           <div class="  flex items-center flex-col md:flex-row  justify-between pl-4 pr-4 w-300 h-full bg-transparent">
             <div class="flex gap-5 mt-3">
               <img src="/bookIcon.svg" alt="" class="bg-[#6347D1] p-3 w-15 h-15 rounded-3xl">
               <div class="flex flex-col ">
-                <h3 class="text-[#17171C] text-3xl font-bold">VocabFlow</h3>
-                <span class="font-normal  text-[#868692]">Spaced Repetition</span>
+                <h3 class="text-[#17171C] dark:text-[#f2f2f5] text-3xl font-bold">VocabFlow</h3>
+                <span class="font-normal  text-[#868692] dark:text-[#a0a0ad]">Spaced Repetition</span>
               </div>
             </div>
             <!-- Navbar Left Content end -->
             <!-- Navbar Right Content Start -->
-            <button  id="addWordbtn" class="flex mb-2 bg-[#6347D1]  gap-1 items-center justify-center rounded-2xl w-40 h-12  pl-1 pr-3 text-[16px] font-bold text-white hover:bg-[#7354f0] transition-all">
+            <div class="flex items-center gap-2 mb-2 mt-2 md:mt-0">
+              <button id="themeToggle" type="button" title="Light / Dark mode" aria-label="Toggle dark mode" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-[#eeeef1] dark:bg-[#242430] text-[#17171C] dark:text-[#f2f2f5] hover:bg-[#c8c8ce] dark:hover:bg-[#33333f] transition-all cursor-pointer">
+                <span class="block dark:hidden"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+                <span class="hidden dark:block"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+              </button>
+              <button id="importBtn" type="button" title="Import words from JSON" aria-label="Import words from JSON" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-[#eeeef1] dark:bg-[#242430] text-[#17171C] dark:text-[#f2f2f5] hover:bg-[#c8c8ce] dark:hover:bg-[#33333f] transition-all cursor-pointer md:w-auto md:px-4 md:gap-2 md:font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+                <span class="hidden md:inline">Import</span>
+              </button>
+              <button id="exportBtn" type="button" title="Export words as JSON" aria-label="Export words as JSON" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-[#eeeef1] dark:bg-[#242430] text-[#17171C] dark:text-[#f2f2f5] hover:bg-[#c8c8ce] dark:hover:bg-[#33333f] transition-all cursor-pointer md:w-auto md:px-4 md:gap-2 md:font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 15V3M7 8l5-5 5 5M5 21h14"/></svg>
+                <span class="hidden md:inline">Export</span>
+              </button>
+              <button  id="addWordbtn" class="flex bg-[#6347D1]  gap-1 items-center justify-center rounded-2xl w-36 md:w-40 whitespace-nowrap h-12  pl-1 pr-3 text-[16px] font-bold text-white hover:bg-[#7354f0] transition-all">
               
               <img src="/addIcon.svg" alt="" class="w-9">
               Add Word
             </button>
+            </div>
             <!-- Navbar Right Content End -->
           </div>
         </header>
@@ -41,50 +64,50 @@
 
       <div class="max-w-300 w-[90%] m-auto mt-10 flex flex-col " >
           <div class=" grid  grid-cols-2  w-full gap-2 items-center md:grid-cols-4 m-auto">
-            <div class=" progressCart bg-[#eeeef1]">
+            <div class=" progressCart bg-[#eeeef1] dark:bg-[#242430]">
               <img src="/TotalWordIcon.svg" alt="" class="w-8">
               <span id="totalWord" class="font-bold text-3xl"></span>
-              <span  class="text-[#797986]  text-[14px] md:text-[18px] md:font-medium">Total Words</span>
+              <span  class="text-[#797986] dark:text-[#a0a0ad]  text-[14px] md:text-[18px] md:font-medium">Total Words</span>
             </div>
-            <div class="progressCart bg-[#eae7f6]">
+            <div class="progressCart bg-[#eae7f6] dark:bg-[#2a2545]">
               <img src="/dailyIcon.svg" alt="" class="w-8">
               <span id="totalDaily" class="font-bold text-3xl"></span>
-              <span  class="text-[#797986] text-[14px] md:text-[18px] md:font-medium">Daily Review</span>
+              <span  class="text-[#797986] dark:text-[#a0a0ad] text-[14px] md:text-[18px] md:font-medium">Daily Review</span>
             </div>
-            <div class="progressCart bg-[#f6e7ed]">
+            <div class="progressCart bg-[#f6e7ed] dark:bg-[#3d2531]">
               <img src="/starIcon.svg" alt="" class="w-8">
               <span id="totalMedium"  class="font-bold text-3xl"></span>
-              <span  class="text-[#797986] text-[14px] md:text-[18px] md:font-medium">Medium Review</span>
+              <span  class="text-[#797986] dark:text-[#a0a0ad] text-[14px] md:text-[18px] md:font-medium">Medium Review</span>
             </div>
-            <div class=" progressCart bg-[#e5f2f1]">
+            <div class=" progressCart bg-[#e5f2f1] dark:bg-[#1f3533]">
               <img src="/rewardedIcon.svg" alt="" class="w-8">
               <span id="totalMaster"  class="font-bold text-3xl">0</span>
-              <span class="text-[#797986] text-[14px] md:text-[18px] md:font-medium">Mastered</span>
+              <span class="text-[#797986] dark:text-[#a0a0ad] text-[14px] md:text-[18px] md:font-medium">Mastered</span>
             </div>
           </div>
           <div class="w-full m-auto mt-10 h-auto  rounded-2xl p-2 flex flex-col items-center md:w-[90%]">
-            <div  class="w-full bg-[#eeeef1]  transition rounded-2xl grid grid-cols-3 p-2 text-center gap-1">
-              <div id="daily" class=" p-4 active  rounded-2xl text-[#797986] boxManager">
+            <div  class="w-full bg-[#eeeef1] dark:bg-[#242430]  transition rounded-2xl grid grid-cols-3 p-2 text-center gap-1">
+              <div id="daily" class=" p-4 active  rounded-2xl text-[#797986] dark:text-[#a0a0ad] boxManager">
                 <div class="font-medium nextclick  rounded-2xl text-[12px] md:text-[16px]  flex items-center justify-center gap-1.5">
                   <img alt="Daily" id="dailyIcon" class="w-4 md:w-6" >  
                   Daily
-                  <span id="totalDaily1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
+                  <span id="totalDaily1" class="bg-[#eeeef1] dark:bg-[#242430] w-5 rounded-full">3</span>
                 </div>
                 <span class="text-[8px] md:text-[12px] font-sans">Review evry day</span>
               </div>
-              <div id="medium" class=" p-4 rounded-2xl text-[#797986] boxManager">
+              <div id="medium" class=" p-4 rounded-2xl text-[#797986] dark:text-[#a0a0ad] boxManager">
                 <div class="font-medium nextclick  rounded-2xl text-[12px] md:text-[16px] flex items-center justify-center gap-1.5">
                   <img alt="Medium" id="mediumIcon" class="w-4 md:w-6" >  
                   Medium
-                  <span id="totalMedium1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
+                  <span id="totalMedium1" class="bg-[#eeeef1] dark:bg-[#242430] w-5 rounded-full">3</span>
                 </div>
                 <span class="text-[8px] md:text-[12px] font-sans">3x per week</span>
               </div>
-              <div id="master" class=" p-4 rounded-2xl text-[#797986] boxManager">
+              <div id="master" class=" p-4 rounded-2xl text-[#797986] dark:text-[#a0a0ad] boxManager">
                 <div class="font-medium  nextclick rounded-2xl not-last:text-[12px] md:text-[16px] flex items-center justify-center gap-1.5">
                   <img alt="Master" id="masterIcon" class="w-4 md:w-6" >  
                   Mastered
-                  <span id="totalMaster1" class="bg-[#eeeef1] w-5 rounded-full">3</span>
+                  <span id="totalMaster1" class="bg-[#eeeef1] dark:bg-[#242430] w-5 rounded-full">3</span>
                 </div>
                 <span class="md:text-[11px] text-[8px] font-sans">1x per week</span>
               </div>
@@ -92,13 +115,14 @@
             <div class="w-full h-full mt-5 flex flex-col " id="CartBox">
               <div class=" w-[80%] h-10 m-auto  ">
                 <!-- Title Progress Strt -->
-                <div class="flex items-center justify-between text-[15px] text-[#797986] font-medium">
+                <div class="flex items-center justify-between text-[15px] text-[#797986] dark:text-[#a0a0ad] font-medium">
                   <span>Cart <span id="firstNum">1 </span> of <span id="secondNum">4</span> </span>
+                  <select id="speechVoice" title="English voice" aria-label="English voice" class="hidden text-[12px] md:text-[14px] max-w-40 rounded-lg border border-gray-300 dark:border-[#3a3a48] bg-white dark:bg-[#242430] text-[#17171C] dark:text-[#f2f2f5] px-1 py-0.5 focus:outline-none focus:border-[#6347D1] cursor-pointer"></select>
                   <span id="percentage"></span>
                 </div>
                 <!-- Title Progress End -->
                  <!-- Animation Progress Box -->
-                <span  class="w-full h-2 rounded-2xl mt-2 bg-white flex">
+                <span  class="w-full h-2 rounded-2xl mt-2 bg-white dark:bg-[#2a2a35] flex">
                   <span id="progressBar" class=" h-full transition-all bg-[#6347D1] rounded-2xl"></span>
                 </span>
               </div>
@@ -107,17 +131,18 @@
                   <div id="innerCard" class="relative w-full md:w-[80%] h-80 m-auto transition-transform duration-500 transform-style">
 
                     <!-- Front -->
-                    <div  class="absolute w-full h-full backface-hidden rounded-3xl shadow bg-white flex flex-col items-center justify-center">
-                      <span class="text-[12px] text-[#797986] uppercase">word</span>
+                    <div  class="absolute w-full h-full backface-hidden rounded-3xl shadow bg-white dark:bg-[#1e1e28] flex flex-col items-center justify-center">
+                      <button type="button" data-speak="front" title="Pronounce word" aria-label="Pronounce word" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center bg-[#eae7f6] dark:bg-[#2a2545] text-[#6347D1] dark:text-[#a99af0] hover:bg-[#6347D1] hover:text-white transition-all cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+                      <span class="text-[12px] text-[#797986] dark:text-[#a0a0ad] uppercase">word</span>
                       <h1 class="text-4xl transition-all" id="frontCard"></h1>
-                      <span class="mt-5 text-[#797986] text-[12px]">Tap to reveal</span>
+                      <span class="mt-5 text-[#797986] dark:text-[#a0a0ad] text-[12px]">Tap to reveal</span>
                     </div>
 
                     <!-- Back -->
-                    <div  class="absolute w-full h-full backface-hidden rotate-y-180 rounded-3xl shadow bg-white flex flex-col items-center justify-center">
-                      <span class="text-[12px] text-[#797986] uppercase">Meaning</span>
+                    <div  class="absolute w-full h-full backface-hidden rotate-y-180 rounded-3xl shadow bg-white dark:bg-[#1e1e28] flex flex-col items-center justify-center">
+                      <span class="text-[12px] text-[#797986] dark:text-[#a0a0ad] uppercase">Meaning</span>
                       <h1 class="text-2xl text-center" id="backCard"></h1>
-                      <span class="mt-5 text-[#797986] text-[12px]">Tap to flip back</span>
+                      <span class="mt-5 text-[#797986] dark:text-[#a0a0ad] text-[12px]">Tap to flip back</span>
                     </div>
 
                   </div>
@@ -125,12 +150,12 @@
               <!-- End Cart -->
               <div class="w-[90%] mb-5 h-auto  m-auto  md:max-w-150">
                 <div class="w-full h-40  m-auto grid grid-cols-3 gap-3 mt-2">
-                  <button id="showMeaning" class="flex h-13 items-center transition-all duration-400  justify-center  col-span-2  gap-1 md:gap-3 md:font-medium text-[12px] md:text-[18px] bg-[#f9f9fb] rounded-2xl  shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)] hover:bg-[#DF497B] hover:text-white ">
+                  <button id="showMeaning" class="flex h-13 items-center transition-all duration-400  justify-center  col-span-2  gap-1 md:gap-3 md:font-medium text-[12px] md:text-[18px] bg-[#f9f9fb] dark:bg-[#242430] rounded-2xl  shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)] hover:bg-[#DF497B] hover:text-white ">
                     
                     Show Meaninig
                     <img src="/eysDark.svg" alt="" class="w-4 md:w-6 ">
                   </button>
-                  <button id="next" class=" flex h-13  items-center justify-center gap-1 transition-colors bg-[#eeeef1] rounded-2xl hover:bg-[#c8c8ce] text-[12px] md:text-[16px] md:font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
+                  <button id="next" class=" flex h-13  items-center justify-center gap-1 transition-colors bg-[#eeeef1] dark:bg-[#242430] rounded-2xl hover:bg-[#c8c8ce] dark:hover:bg-[#33333f] text-[12px] md:text-[16px] md:font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
                     Next
                     <img src="/arrow_forward1.svg" alt="" class="w-4 md:w-6 ">
                   </button>
@@ -143,7 +168,7 @@
                     delete Word
                     <img src="/arrow_circle_right.svg" alt="" class="w-4 md:w-6" >
                   </button>
-                  <button id="prev" class="h-13 flex  items-center justify-center gap-1 transition-colors bg-[#eeeef1] rounded-2xl hover:bg-[#c8c8ce] text-[12px] md:text-[16px] md:font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
+                  <button id="prev" class="h-13 flex  items-center justify-center gap-1 transition-colors bg-[#eeeef1] dark:bg-[#242430] rounded-2xl hover:bg-[#c8c8ce] dark:hover:bg-[#33333f] text-[12px] md:text-[16px] md:font-medium shadow-[0px_10px_20px_0px_rgba(0,0,0,0.15)]">
                     <img src="/back.png" alt="" class="w-4 md:w-5 ">
                     Prev
                   </button>
@@ -164,7 +189,7 @@
 
     </main>
 
-    <footer class="w-full  h-25 border-t-2 bg-[#fefefe] border-[#EEEEF1] mt-7 flex items-center justify-center">
+    <footer class="w-full  h-25 border-t-2 bg-[#fefefe] dark:bg-[#17171e] border-[#EEEEF1] dark:border-[#2a2a35] mt-7 flex items-center justify-center">
       <div class="w-[80%]  flex flex-col md:flex-row gap-3 md:justify-around items-center  justify-between">
 
         <div class=" flex items-center md:justify-center md:gap-10   gap-3 justify-evenly">
@@ -178,7 +203,7 @@
 
           </div>
         </div>
-        <span class="text-[12px] text-sky-900 font-medium md:text-[18px] ">
+        <span class="text-[12px] text-sky-900 dark:text-sky-300 font-medium md:text-[18px] ">
           Where words become memory
         </span>
       </div>
@@ -186,7 +211,7 @@
 
     <!-- prompt box Start  -->
     <div id="overlay" class="bg-[rgba(0,0,0,0.6)] hidden  w-full h-full fixed top-0 left-0 z-100 "></div>
-      <div id="promptBox" class="w-90 md:w-120 h-96 hidden rounded-2xl  bg-white z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
+      <div id="promptBox" class="w-90 md:w-120 h-96 hidden rounded-2xl  bg-white dark:bg-[#1e1e28] z-200  fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2">
         <div class="w-[90%] h-full flex  m-auto items-center  justify-center  flex-col gap-4">
             <div  class="flex w-full justify-between font-bold mt-13 text-[18px]" >
               Add New Word
@@ -195,12 +220,12 @@
           <form id="myForm" class=" w-full h-full gap-2 flex flex-col items-start justify-center">
             <div class="flex flex-col w-full">
               <label for="word" class="font-medium">Word (front)</label>
-              <input type="text" id="word" class="w-full h-10 pl-3 border placeholder:text-gray-400 transition-all border-gray-300 focus:outline-none focus:border-[#6347D1] rounded-[10px] bg-white" placeholder="e.g, Serendipity">
+              <input type="text" id="word" class="w-full h-10 pl-3 border placeholder:text-gray-400 transition-all border-gray-300 dark:border-[#3a3a48] focus:outline-none focus:border-[#6347D1] rounded-[10px] bg-white dark:bg-[#242430] dark:text-white dark:placeholder:text-gray-500" placeholder="e.g, Serendipity">
               <span id="wordError" class="font-medium text-red-700 m-2"></span>
             </div>
             <div class="w-full flex-col flex">
               <label for="meaning" class="font-medium"> Meaning (Back)</label>
-              <textarea  id="meaning" placeholder="e.g , Finding something good without lokking for it" class="border transition-all border-gray-300 00 h-30 rounded-[10px] p-2 text-[14px] resize-none focus:outline-none focus:border-[#6347D1]"></textarea>
+              <textarea  id="meaning" placeholder="e.g , Finding something good without lokking for it" class="border transition-all border-gray-300 dark:border-[#3a3a48] 00 h-30 rounded-[10px] p-2 text-[14px] resize-none focus:outline-none focus:border-[#6347D1] dark:bg-[#242430] dark:text-white dark:placeholder:text-gray-500"></textarea>
               <span id="textAreaerrobox" class="font-medium text-red-800"></span>
             </div>
             <button type="submit"  id="addvocabulary" class="flex transition-all mb-10 cursor-pointer bg-[#6347D1] w-full h-10 rounded-[10px] items-center text-white  justify-center">
@@ -211,6 +236,28 @@
         </div>
       </div>
       <!-- prompt box end -->
+      <!-- import box Start -->
+      <div id="importBox" class="w-90 md:w-130 max-h-[90vh] overflow-y-auto hidden rounded-2xl bg-white dark:bg-[#1e1e28] z-200 fixed left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2 p-5">
+        <div class="flex w-full justify-between font-bold text-[18px] mb-3">
+          Import Words (JSON)
+          <img id="closeImport" src="/closeIcon.svg" alt="" class="w-4 cursor-pointer dark:invert">
+        </div>
+        <p class="text-[13px] text-[#797986] dark:text-[#a0a0ad] mb-2">
+          Paste a JSON list or choose a .json file. New words are added to the <b>Daily</b> box. Words that already exist are skipped.
+        </p>
+        <pre class="text-[12px] bg-[#eeeef1] dark:bg-[#242430] rounded-[10px] p-3 mb-3 whitespace-pre-wrap break-words text-left" dir="ltr">[
+  { "word": "Serendipity", "meaning": "Finding something good by chance" },
+  { "word": "Ephemeral", "meaning": "Lasting a very short time" }
+]</pre>
+        <textarea id="importText" dir="ltr" placeholder="Paste JSON here..." class="w-full h-40 border border-gray-300 dark:border-[#3a3a48] rounded-[10px] p-2 text-[13px] font-mono resize-none focus:outline-none focus:border-[#6347D1] dark:bg-[#242430] dark:text-white dark:placeholder:text-gray-500"></textarea>
+        <span id="importError" class="block font-medium text-red-700 dark:text-red-400 text-[13px] min-h-5 mt-1"></span>
+        <input type="file" id="importFile" accept=".json,application/json" class="hidden">
+        <div class="flex gap-2 mt-2">
+          <button type="button" id="chooseFile" class="h-10 px-4 rounded-[10px] bg-[#eeeef1] dark:bg-[#242430] hover:bg-[#c8c8ce] dark:hover:bg-[#33333f] transition-all cursor-pointer text-[14px] font-medium">Choose file</button>
+          <button type="button" id="importSubmit" class="h-10 flex-1 rounded-[10px] bg-[#6347D1] hover:bg-[#522ee2] transition-all cursor-pointer text-white text-[14px] font-medium">Import to Daily</button>
+        </div>
+      </div>
+      <!-- import box end -->
     <script type="module" src="src/main.js"></script>
   </body>
 </html>

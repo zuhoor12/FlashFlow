@@ -69,7 +69,7 @@ export class BoxManager {
         if (this.currentWords.length > 0) {
             this.modal.showWord(this.currentWords[this.currentIndex].word, this.currentWords[this.currentIndex].meaning);
         } else {
-            this.modal.showWord("No Words", "Please add some words to this box");
+            this.modal.showWord("No Words", "Please add some words to this box", false);
         }
         if(this.element.id !== "daily"){
             document.getElementById("Previous").classList.remove("hidden")
