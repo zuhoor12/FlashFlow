@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* dark mode is controlled by the "dark" class on <html> (see ThemeManager.js) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 .progressCart {
   height: 10rem;
   border-radius: 1.5rem;
@@ -61,4 +64,24 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* ---------- Dark mode ---------- */
+.dark {
+  color-scheme: dark;
+}
+.dark .active {
+  background-color: #33333f;
+  box-shadow: none;
+}
+.dark .active :first-child {
+  color: #fff;
+}
+/* icons that are black in light mode become white in dark mode */
+.dark .active img,
+.dark #showMeaning img,
+.dark #next img,
+.dark #prev img,
+.dark .progressCart:first-child img {
+  filter: invert(1);
 }
